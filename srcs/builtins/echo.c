@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:13:13 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/11 14:59:05 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/13 19:17:19 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ void	echo_n(char **command_line)
 	while (command_line[i])
 	{
 		j = 0;
+		if (option_n(command_line[i]) == true)
+        {
+            i++;
+            continue;
+        }
 		while (command_line[i][j])
 		{
 			ft_putchar(command_line[i][j]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   design.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 14:13:05 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/12 14:35:29 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/13 18:12:19 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char	*print_prompt(void)
 	new_pwd = find_cwd();
 	env = getenv("SESSION_MANAGER");
 	if (!env)
-		return (readline("\033[1mminishell->\033[0m"));
+		return (readline("\033[1mminishell-> \033[0m"));
 	else
 	{
 		name = ft_strnstr(env, "made", ft_strlen(env));

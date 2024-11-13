@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 19:33:58 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/13 16:19:05 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/13 19:19:54 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ bool	option_n(char *str)
 	i = 0;
 	while (str[i])
 	{
+		if (str[i] == '-' && i == 0)
+			i++;
 		if (str[i] != 'n')
 			return (false);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:09:56 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/13 16:57:40 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/13 19:05:36 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,31 @@ int	found_files(char *file, char *cmd)
 	return (0);
 }
 
+bool	check_token_redir(t_token *token)
+{
+	if (token->type == 1)
+	{
+		if (ft_strcmp(token->token, "<") != 0)
+			return (error_token(token->token), false);
+	}
+	if (token->type == 2)
+	{
+		if (ft_strcmp(token->token, ">") != 0)
+			return (error_token(token->token), false);
+	}
+	if (token->type == 3)
+	{
+		if (ft_strcmp(token->token, "<<") != 0)
+			return (error_token(token->token), false);
+	}
+	if (token->type == 4)
+	{
+		if (ft_strcmp(token->token, ">>") != 0)
+			return (error_token(token->token), false);
+	}
+	return (true);
+}
+
 bool	checking_token_bis(t_token **token_list)
 {
 	t_token	*token;
@@ -84,6 +109,11 @@ bool	checking_token_bis(t_token **token_list)
 			if (is_operator_bis(token->prev) || is_operator_bis(token->next))
 				return (error_token(token->token), false);
 			
+		}
+		if (token->type >= 1 && token->type <= 4)
+		{
+			if (check_token_redir(token) == false)
+				return (false);
 		}
 		token = token->next;
 	}

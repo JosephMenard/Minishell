@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:13:20 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/11 20:08:11 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/13 19:17:03 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	find_sign(char **command_line, int i, t_data *data)
 		if (command_line[i][j] != '=' && ft_isalnum(command_line[i][j]) == 0)
 		{
 			ft_putendl_fd("incorrect pattern for export.", 2);
-			exit_status(1, data);
+			exit_status(2, data);
 			return ;
 		}
 		if (command_line[i][j] == '=')

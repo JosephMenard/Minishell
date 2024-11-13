@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 16:35:11 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/13 16:25:53 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/13 19:11:03 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	open_heredoc(t_files *files)
 			error_heredoc(files->files_name);
 		if (!str || ft_strncmp(str, files->files_name,
 				ft_strlen(files->files_name)) == 0)
-			break ;
+			return (free(str), close(fd[1]), fd[0]);
 		ft_putendl_fd(str, fd[1]);
 		free(str);
 	}

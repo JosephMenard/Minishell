@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_token.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 12:48:45 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/12 15:23:12 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/13 19:06:07 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ bool	checking_token(t_token **token_list, t_env **env_list)
 		}
 		if (token->type >= 1 && token->type <= 4)
 		{
-			if (!token->next || token->next->type < 10
+			if (!token->next || token->next->type < 9
 				|| token->next->type > 12)
 				return (error_token(token->token), false);
 		}

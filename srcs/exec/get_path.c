@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 14:52:53 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/12 12:11:29 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/13 18:09:23 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ char	*get_path(char *cmd, char **env)
 		return (cmd);
 	all_path = ft_split(get_all_path("PATH", env), ':');
 	cmd_name = ft_split(cmd, ' ');
+	if (!cmd_name[0])
+		return (cmd);
 	if (ft_strchr(cmd_name[0], '/') != NULL)
 		return (cmd_name[0]);
 	while (all_path[i])

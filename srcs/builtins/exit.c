@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:13:04 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/13 16:17:07 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/13 18:37:48 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,9 @@ int	check_num(char *arg)
 	while (arg[i])
 	{
 		if (i == 0 && arg[i] == '-')
-		{
-			sign = -1;
-			i++;
-			return (255);
-		}
+			return (256 - ft_atoi(&arg[1]));
+		if (i == 0 && arg[i] == '+')
+			return (ft_atoi(&arg[1]));
 		if (ft_isdigit(arg[i]) == 0)
 		{
 			ft_putstr_fd("Minishell: exit: ", STDERR_FILENO);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_list.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:22:20 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/13 15:40:52 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/13 19:18:31 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,10 @@ char	**envlist_to_char(t_env *env)
 	env_array[len] = NULL;
 	while (env_ptr)
 	{
-		if ((!env_ptr->name || !env_ptr->content) && env_ptr->next)
+		while ((!env_ptr->name || !env_ptr->content) && env_ptr->next)
 			env_ptr = env_ptr->next;
+		if (!env_ptr->name || !env_ptr->content)
+			break ;
 		len = ft_strlen(env_ptr->name) + ft_strlen(env_ptr->content) + 2;
 		env_array[i] = ft_malloc(len, sizeof(char), 1, 0);
 		copy_str(env_array[i], env_ptr, len);
