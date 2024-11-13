@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 16:35:11 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/12 16:42:02 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/13 13:59:58 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,15 @@ int	open_heredoc(t_files *files)
 	while (1)
 	{
 		str = readline("heredoc>");
-		if (!str || g_status != 0)
-			return (close(fd[1]), 1);
-		if (ft_strncmp(str, files->files_name,
+		if (!str)
+			error_heredoc(files->files_name);
+		if (!str || ft_strncmp(str, files->files_name,
 				ft_strlen(files->files_name)) == 0)
-			break ;
+			break ;	
+		if (g_status != 0)
+			return (close(fd[1]), 1);
 		ft_putendl_fd(str, fd[1]);
 		free(str);
 	}
-	close(fd[1]);
-	return (fd[0]);
+	return (close(fd[1]), fd[0]);
 }

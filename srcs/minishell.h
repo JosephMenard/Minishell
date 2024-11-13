@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:05:23 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/13 12:47:13 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/13 13:58:47 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,5 +254,6 @@ bool							is_operator_bis(t_token *token_node);
 bool							checking_token_bis(t_token **token_list);
 char							**copy_remaining_cmd(char **cmd, char **new_cmd,
 									int *i, int *c);
+void							error_heredoc(char *token);
 
 #endif

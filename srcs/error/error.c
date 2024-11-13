@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:24:56 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/12 09:59:12 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/13 14:00:38 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@ void	print_error(int error_type, char *incorrect_str, t_data *data)
 	(void)incorrect_str;
 	exit_status(1, data);
 	exit_now(1);
+}
+
+void	error_heredoc(char *token)
+{
+	ft_putstr_fd("Minishell: warning: here-document delimited by eof (wanted `",
+		2);
+	ft_putstr_fd(token, 2);
+	ft_putstr_fd("')\n", 2);
 }
 
 void	error_token(char *token)
