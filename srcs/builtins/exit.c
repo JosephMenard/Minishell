@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:13:04 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/12 16:28:24 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/13 16:17:07 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	to_many_args(void)
 {
-	ft_putstr_fd("Minishell: exit: too many arguments\n", 2);
+	ft_putstr_fd("Minishell: exit: too many arguments\n", STDERR_FILENO);
 	return ;
 }
 
@@ -35,9 +35,9 @@ int	check_num(char *arg)
 		}
 		if (ft_isdigit(arg[i]) == 0)
 		{
-			ft_putstr_fd("Minishell: exit: ", 2);
-			ft_putstr_fd(arg, 2);
-			ft_putstr_fd(": numeric argument required\n", 2);
+			ft_putstr_fd("Minishell: exit: ", STDERR_FILENO);
+			ft_putstr_fd(arg, STDERR_FILENO);
+			ft_putstr_fd(": numeric argument required\n", STDERR_FILENO);
 			return (2);
 		}
 		i++;

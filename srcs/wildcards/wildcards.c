@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcards.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:09:56 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/12 14:20:08 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/13 16:57:40 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,11 @@ bool	checking_token_bis(t_token **token_list)
 	{
 		if (is_operator_bis(token))
 		{
-			if (is_operator_bis(token->prev))
+			if (!token->next)
 				return (error_token(token->token), false);
+			if (is_operator_bis(token->prev) || is_operator_bis(token->next))
+				return (error_token(token->token), false);
+			
 		}
 		token = token->next;
 	}

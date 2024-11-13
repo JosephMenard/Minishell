@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 19:33:58 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/13 15:01:56 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/13 16:19:05 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ bool	option_n(char *str)
 
 int	print_command_not_found(char *cmd)
 {
-	ft_putstr_fd("Minishell: ", 2);
-	ft_putstr_fd(cmd, 2);
-	ft_putstr_fd(": Command not found\n", 2);
+	ft_putstr_fd("Minishell: ", STDERR_FILENO);
+	ft_putstr_fd(cmd, STDERR_FILENO);
+	ft_putstr_fd(": Command not found\n", STDERR_FILENO);
 	exit_now(127);
 	return (1);
 }

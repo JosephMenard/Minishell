@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:13:09 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/13 15:16:00 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/13 16:16:51 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_cd(char **path, int i, t_data *data)
 {
 	if (!path[1])
 	{
-		ft_putstr_fd("Minishell: cd: No such file or directory\n", 2);
+		ft_putstr_fd("Minishell: cd: No such file or directory\n", STDERR_FILENO);
 		exit_status(1, data);
 		return (1);
 	}
