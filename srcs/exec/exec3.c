@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:26:31 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/13 12:40:04 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/13 15:42:08 by mianni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ void	fork_and_exec(t_ast *ast, t_data *data)
 	status = 0;
 	pid1 = fork();
 	if (pid1 == 0)
+	{
+		set_child_signals();
+		data->is_child = 1;
 		exec(ast, data);
+	}
 	waitpid(pid1, &status, 0);
 	exit_status(status, data);
 	return ;
@@ -32,7 +36,7 @@ bool	check_if_fork_needed(t_ast *ast)
 		return (false);
 	if (ast->commande->type == 9 || ast->commande->type == 7)
 		return (true);
-	if (ast->commande->type >= 9 && ast->commande->type <=12 
+	if (ast->commande->type >= 9 && ast->commande->type <= 12 
 		&& search_builtins(ast->commande->cmd_args) == false)
 		return (true);
 	return (false);

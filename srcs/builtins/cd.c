@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:13:09 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/12 11:29:17 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/13 15:16:00 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 int	ft_cd(char **path, int i, t_data *data)
 {
+	if (!path[1])
+	{
+		ft_putstr_fd("Minishell: cd: No such file or directory\n", 2);
+		exit_status(1, data);
+		return (1);
+	}
 	if (chdir(path[i + 1]) == -1)
 	{
 		exit_status(1, data);

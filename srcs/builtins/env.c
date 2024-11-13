@@ -6,7 +6,7 @@
 /*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:13:16 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/12 16:01:05 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/13 15:37:39 by mianni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	ft_env(t_data *data)
 	env = get_env(NULL);
 	while (env)
 	{
-		if (env->name && (env->name[0] == '?' || env->name[0] == '$'))
+		if (env->name && env->name[0] == '?')
 			env = env->next;
 		if (env)
 		{
-			if (env->name && (env->name[0] != '?' || env->name[0] != '$'))
+			if (env->name && env->name[0] != '?')
 				printf("%s=", env->name);
-			if (env->content && (env->name[0] != '?' || env->name[0] != '$'))
+			if (env->content && env->name[0] != '?')
 				printf("%s\n", env->content);
 			env = env->next;
 		}
@@ -47,7 +47,7 @@ void	ft_env_export(t_data *data)
 	env = get_env(NULL);
 	while (env)
 	{
-		if (!env->name && (env->name[0] == '?' || env->name[0] == '$'))
+		if (!env->name || (env->name[0] == '?' || env->name[0] == '\0'))
 			env = env->next;
 		else if (env)
 		{

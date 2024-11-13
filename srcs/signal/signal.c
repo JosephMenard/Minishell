@@ -6,7 +6,7 @@
 /*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:05:56 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/12 14:12:44 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/13 15:13:14 by mianni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,6 @@ void	sigquit(t_data *data)
 	}
 }
 
-bool	search_in_env(t_env *env, t_data *data)
-{
-	while (env)
-	{
-		if (env->name && env->name[0] == '?' && !env->name[1])
-		{
-			env->content = ft_itoa(data->status);
-			return (true);
-		}
-		env = env->next;
-	}
-	return (false);
-}
-
 int	readline_function(void)
 {
 	return (0);
@@ -43,10 +29,18 @@ int	readline_function(void)
 
 void	set_parent_signals(void)
 {
-	g_status = 0;
 	rl_event_hook = readline_function;
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, SIG_IGN);
+	signal(SIGTSTP, SIG_IGN);
+}
+
+void	set_child_signals(void)
+{
+	rl_event_hook = readline_function;
+	signal(SIGINT, signal_handler);
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGTSTP, SIG_IGN);
 }
 
 void	signal_handler(int signum)
