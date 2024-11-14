@@ -59,7 +59,6 @@ bool	checking_token_bis(t_token **token_list)
 				return (error_token(token->token), false);
 			if (is_operator_bis(token->prev) || is_operator_bis(token->next))
 				return (error_token(token->token), false);
-			
 		}
 		if (token->type >= 1 && token->type <= 4)
 		{

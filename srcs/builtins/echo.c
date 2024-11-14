@@ -22,10 +22,10 @@ void	echo_n(char **command_line)
 	{
 		j = 0;
 		if (option_n(command_line[i]) == true)
-        {
-            i++;
-            continue;
-        }
+		{
+			i++;
+			continue ;
+		}
 		while (command_line[i][j])
 		{
 			ft_putchar(command_line[i][j]);

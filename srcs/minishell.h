@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:05:23 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/14 16:03:14 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 18:23:00 by mianni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,6 +255,8 @@ char							**copy_remaining_cmd(char **cmd, char **new_cmd,
 									int *i, int *c);
 void							error_heredoc(char *token);
 void							set_child_signals(void);
-bool    						check_parenthesis(char *str);
+bool							check_parenthesis(char *str);
+bool							check_files_cmd_exist_left(t_ast *ast_list);
+bool							check_files_cmd_exist_right(t_ast *ast_list);
 
 #endif

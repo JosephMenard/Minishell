@@ -16,7 +16,8 @@ int	ft_cd(char **path, int i, t_data *data)
 {
 	if (!path[1])
 	{
-		ft_putstr_fd("Minishell: cd: No such file or directory\n", STDERR_FILENO);
+		ft_putstr_fd("Minishell: cd: No such file or directory\n",
+			STDERR_FILENO);
 		return (data->status = 1, 1);
 	}
 	if (chdir(path[i + 1]) == -1)

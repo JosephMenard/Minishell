@@ -86,8 +86,7 @@ bool	checking_token(t_token **token_list, t_env **env_list)
 		}
 		if (token->type >= 1 && token->type <= 4)
 		{
-			if (!token->next || token->next->type < 9
-				|| token->next->type > 12)
+			if (!token->next || token->next->type < 9 || token->next->type > 12)
 				return (error_token(token->token), false);
 		}
 		token = token->next;

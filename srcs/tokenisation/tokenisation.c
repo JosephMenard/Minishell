@@ -32,7 +32,7 @@ int	check_quoted(char *command_line, int *i)
 char	*create_sub_string(int *i, int j, char *command_line)
 {
 	char	*str;
-	
+
 	if (is_a_quote(command_line[*i]) == true)
 		str = ft_substr(command_line, *i + 1, j - 2, 0);
 	else

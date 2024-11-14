@@ -47,7 +47,8 @@ bool	check_exit(t_cmd *cmd, t_data *data)
 		return (false);
 }
 
-bool	open_n_do_builtins(t_cmd *cmd, t_data *data, t_files *files, int dup_status)
+bool	open_n_do_builtins(t_cmd *cmd, t_data *data, t_files *files,
+		int dup_status)
 {
 	bool	status;
 	int		stdin;
@@ -69,8 +70,8 @@ bool	open_n_do_builtins(t_cmd *cmd, t_data *data, t_files *files, int dup_status
 		else if (files->type == 2 || files->type == 4)
 			dup_status = dup2(stdout, STDOUT_FILENO);
 		if (dup_status == -1)
-			return (close(stdin), close(stdout), 
-				perror_r("Minishell: dup2: ", files->files_name), false);
+			return (close(stdin), close(stdout), perror_r("Minishell: dup2: ",
+					files->files_name), false);
 		return (close(stdin), close(stdout), status);
 	}
 }

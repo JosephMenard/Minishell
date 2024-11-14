@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 19:33:58 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/13 19:19:54 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 18:21:06 by mianni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	initialize_data(t_data *data, t_env **env_list, char **envp)
 	get_env(*env_list);
 	ft_bzero(data, sizeof(t_data));
 	get_data(data);
-	//print_animation();
+	print_animation();
 }
 
 bool	option_n(char *str)

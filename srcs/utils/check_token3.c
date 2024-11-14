@@ -63,7 +63,7 @@ void	expand_var2(t_token *token, int j, char *var, char *new_str)
 	while (token->token[i] != '$')
 		i++;
 	new_str = ft_substr(token->token, 0, i, 0);
-		i++;
+	i++;
 	j = i;
 	while (token->token[i++] && ft_isalnum(token->token[i]) == 1)
 		len++;
@@ -77,7 +77,7 @@ void	expand_var2(t_token *token, int j, char *var, char *new_str)
 		if (new_str)
 			(token->token = new_str);
 		token->type = 10;
-	}	
+	}
 }
 
 int	count_dollar(char *str)

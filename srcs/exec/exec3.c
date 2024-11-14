@@ -36,8 +36,9 @@ bool	check_if_fork_needed(t_ast *ast)
 		return (false);
 	if (ft_strcmp(ast->commande->cmd_args[0], "exit") == 0)
 		return (false);
-	if (ast->commande->type == 7 || (ast->commande->type >= 10 && ast->commande->type <= 12 
-		&& search_builtins(ast->commande->cmd_args) == false))
+	if (ast->commande->type == 7 || (ast->commande->type >= 10
+			&& ast->commande->type <= 12
+			&& search_builtins(ast->commande->cmd_args) == false))
 		return (true);
 	return (false);
 }

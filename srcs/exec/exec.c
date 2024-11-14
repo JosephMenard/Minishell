@@ -23,10 +23,10 @@ int	execute_command(char *path, t_cmd *cmd, char **env_array)
 		ft_putstr_fd("Minishell: ", STDERR_FILENO);
 		perror(cmd->cmd_args[0]);
 		if (errno == ENOENT)
-            exit_now(127);
-        if (errno == EACCES)
-            exit_now(126);
-        exit_now(1);
+			exit_now(127);
+		if (errno == EACCES)
+			exit_now(126);
+		exit_now(1);
 		return (1);
 	}
 	return (0);

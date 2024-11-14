@@ -30,7 +30,6 @@ void	second_child_process(int fd[2], t_ast *ast, t_data *data)
 	close(fd[0]);
 	exec(ast->right, data);
 	exit_now(get_data(NULL)->status);
-	
 }
 
 void	wait_for_children(int pid1, int pid2, t_data *data)

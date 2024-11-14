@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_list.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:22:20 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/13 19:18:31 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 18:17:26 by mianni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,20 @@ t_env	*get_env(t_env *env)
 	return (environnement);
 }
 
+int	count_env_name(t_env *env)
+{
+	int	len;
+
+	len = 0;
+	while (env)
+	{
+		if (env->name)
+			len++;
+		env = env->next;
+	}
+	return (len);
+}
+
 char	**envlist_to_char(t_env *env)
 {
 	int		len;
@@ -82,14 +96,8 @@ char	**envlist_to_char(t_env *env)
 	int		i;
 
 	env_ptr = get_env(env);
-	len = 0;
+	len = count_env_name(env);
 	i = 0;
-	while (env)
-	{
-		if (env->name)
-			len++;
-		env = env->next;
-	}
 	env_array = ft_malloc(len + 1, sizeof(char *), 1, 0);
 	env_array[len] = NULL;
 	while (env_ptr)

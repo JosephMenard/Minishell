@@ -22,7 +22,8 @@ void	error_heredoc(char *token)
 
 void	error_token(char *token)
 {
-	ft_putstr_fd("Minishell: syntax error near unexpected token '", STDERR_FILENO);
+	ft_putstr_fd("Minishell: syntax error near unexpected token '",
+		STDERR_FILENO);
 	ft_putstr_fd(token, STDERR_FILENO);
 	ft_putstr_fd("'\n", STDERR_FILENO);
 }

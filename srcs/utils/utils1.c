@@ -14,7 +14,7 @@
 
 /*bool		check_parenthesis(char *command_line)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (command_line[i])
