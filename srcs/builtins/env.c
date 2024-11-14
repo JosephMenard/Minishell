@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:13:16 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/13 15:37:39 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/14 15:26:24 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_env(t_data *data)
 		else
 			break ;
 	}
-	exit_status(0, data);
+	data->status = 0;
 }
 
 void	ft_env_export(t_data *data)
@@ -60,4 +60,5 @@ void	ft_env_export(t_data *data)
 		else
 			break ;
 	}
+	data->status = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 16:35:11 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/14 13:21:28 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 15:36:04 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	redirect_fd(t_cmd *cmd)
 		dup_status = dup2(cmd->files->fd, STDOUT_FILENO);
 	if (dup_status == -1)
 		return (perror_r("Minishell: dup2 failed: ",
-			cmd->files->files_name));
+				cmd->files->files_name));
 	return (0);
 }
 
@@ -38,6 +38,10 @@ int	open_files(t_cmd *cmd)
 	ret = 0;
 	while (cmd->files)
 	{
+		if (cmd->files->files_name[0] == '$')
+			return (close_fds(), 
+				ft_putstr_fd("Minishell: ambiguous redirect\n",
+					STDERR_FILENO), -1);
 		if (cmd->files->type == 1)
 			cmd->files->fd = ft_open(cmd->files->files_name, O_RDONLY, -2);
 		else if (cmd->files->type == 2)
@@ -47,7 +51,7 @@ int	open_files(t_cmd *cmd)
 			cmd->files->fd = ft_open(cmd->files->files_name,
 					O_WRONLY | O_APPEND | O_CREAT, -2);
 		if (cmd->files->fd == -1)
-			return (close_fds(), get_data(NULL)->status = 1, 
+			return (close_fds(), 
 				perror_r("Minishell: ", cmd->files->files_name));
 		else
 			ret = redirect_fd(cmd);
@@ -86,8 +90,6 @@ int	open_heredoc(t_files *files)
 	int		fd[2];
 
 	str = ft_malloc(1, sizeof(char), 0, 0);
-	if (!str)
-		exit_now(1);
 	str[0] = '\0';
 	pipe(fd);
 	ft_open(NULL, 0, fd[0]);

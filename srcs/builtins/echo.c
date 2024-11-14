@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:13:13 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/13 19:17:19 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 15:25:31 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	ft_echo(char **command_line, t_data *data)
 	if (!command_line[1])
 	{
 		write(1, "\n", 1);
+		data->status = 0;
 		return ;
 	}
 	if (command_line[1][0] == '-' && option_n(&command_line[1][1]))
@@ -102,5 +103,5 @@ void	ft_echo(char **command_line, t_data *data)
 	}
 	else
 		write(1, "\n", 1);
-	exit_status(0, data);
+	data->status = 0;
 }

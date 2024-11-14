@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:13:23 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/09 14:49:31 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/14 15:28:19 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ void	ft_pwd(t_data *data)
 	command1 = ft_malloc(4096, sizeof(char), 0, 0);
 	cwd = getcwd(command1, 4096);
 	printf("%s\n", cwd);
-	exit_status(0, data);
+	data->status = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:09:56 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/14 14:15:47 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 15:16:36 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_ast	*parsing(char *cmd_line, t_env *env_list)
 	token_list = create_token(cmd_line);
 	//print_token_list(&token_list);
 	if (!checking_token(&token_list->next, &env_list))
-		return (g_status = 2, NULL);
+		return (get_data(NULL)->status = 2, NULL);
 	cmd_list = parse_it(&token_list);
 	//print_cmd_list(&cmd_list, 0);
 	open_all_heredoc(&cmd_list);

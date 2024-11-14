@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:13:26 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/13 15:35:12 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/14 15:29:21 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_unset(char **command)
 	int		i;
 
 	i = 1;
+	get_data(NULL)->status = 0;
 	if (!command[i])
 		return ;
 	while (command[i])

@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:13:20 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/14 11:47:08 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 15:39:05 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	find_sign2(char **command_line, char *str_content, int *i, int *j)
 			return (0);
 	}
 	if (!str_name)
-		exit_status(1, data);
+		data->status = 1;
 	new_node(env, str_name, str_content);
 	return (1);
 }
@@ -93,13 +93,13 @@ void	find_sign(char **command_line, int i, t_data *data)
 			ft_putstr_fd("incorrect pattern for export: '", STDERR_FILENO);
 			ft_putstr_fd(command_line[i], STDERR_FILENO);
 			ft_putstr_fd("'\n", STDERR_FILENO);
-			exit_status(2, data);
+			data->status = 2;
 			return ;
 		}
 		if (command_line[i][j] == '=')
 		{
 			if (find_sign2(command_line, NULL, &i, &j) == 0)
-				return (exit_status(0, data));
+				return ((void)(data->status = 0));
 			break ;
 		}
 		j++;
@@ -120,5 +120,5 @@ void	ft_export(char **command_line, t_data *data)
 		find_sign(command_line, i, data);
 		i++;
 	}
-	exit_status(0, data);
+	data->status = 0;
 }

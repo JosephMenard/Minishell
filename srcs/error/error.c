@@ -6,20 +6,11 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:24:56 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/13 16:17:33 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 15:34:19 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-// code erreur : pas de file ou dir
-void	print_error(int error_type, char *incorrect_str, t_data *data)
-{
-	(void)error_type;
-	(void)incorrect_str;
-	exit_status(1, data);
-	exit_now(1);
-}
 
 void	error_heredoc(char *token)
 {

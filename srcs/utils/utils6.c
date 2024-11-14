@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 19:33:58 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/14 11:55:07 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 15:22:56 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ bool	open_n_do_builtins(t_cmd *cmd, t_data *data, t_files *files)
 	stdout = dup(STDOUT_FILENO);
 	dup_status = 0;
 	if (open_files(cmd) == -1)
-		return (g_status = 1, true);
+		return (data->status = 1, true);
 	else
 	{
 		status = do_builtins(cmd->cmd_args, data);

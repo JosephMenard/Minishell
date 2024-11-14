@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:13:04 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/13 18:37:48 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 15:27:26 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ void	ft_exit(char **args, t_data *data)
 		else
 		{
 			exit_status(1, data);
-			return (to_many_args());
+			return (data->status = 1, to_many_args());
 		}
 	}
 	if (args[3])
-		return (to_many_args());
+		return (data->status = 1, to_many_args());
 }

@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 16:41:45 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/14 14:03:33 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 15:07:23 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int	execute_command(char *path, t_cmd *cmd, char **env_array)
 {
 	if (execve(path, cmd->cmd_args, env_array) == -1)
 	{
-		ft_putstr_fd("Minishell: ", STDERR_FILENO);
+		ft_putstr_fd("Minishell65465: ", STDERR_FILENO);
 		perror(cmd->cmd_args[0]);
 		if (errno == ENOENT)
-            g_status = 127;
+            exit_now(127);
         if (errno == EACCES)
-            g_status = 126;
-        exit_now(g_status);
+            exit_now(126);
+        exit_now(1);
 		return (1);
 	}
 	return (0);
