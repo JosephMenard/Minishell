@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:09:56 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/13 19:03:37 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 11:23:56 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_ast	*parsing(char *cmd_line, t_env *env_list)
 	if (!checking_token(&token_list->next, &env_list))
 		return (g_status = 2, NULL);
 	cmd_list = parse_it(&token_list);
+	//print_cmd_list(&cmd_list, 0);
 	open_all_heredoc(&cmd_list);
 	ast_list = build_ast(NULL, cmd_list, false);
 	while (ast_list->prev)
@@ -69,13 +70,33 @@ char	*handle_input(void)
 	}
 }
 
+bool	check_files_cmd_exist(t_ast *ast_list)
+{
+	int	count;
+
+	count = 0;
+	if (!ast_list->commande->cmd_args[0])
+	{
+		if (ast_list->commande->files)
+			open_files(ast_list->commande);
+		count++;
+	}
+	if (ast_list->left)
+		return (check_files_cmd_exist(ast_list->left));
+	if (ast_list->right)
+		return (check_files_cmd_exist(ast_list->right));
+	if (count > 0)
+		return (false);
+	return (true);
+}
+
 void	process_command(char *str, t_env *env_list, t_data *data,
 		t_ast **ast_list)
 {
 	*ast_list = parsing(str, env_list);
 	if (!(*ast_list))
 		return ;
-	if (!(*ast_list)->commande->cmd_args[0])
+	if (check_files_cmd_exist(*ast_list) == false)
 		return ;
 	if (data->signaled == 1)
 	{

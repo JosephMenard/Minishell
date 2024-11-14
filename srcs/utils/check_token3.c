@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 19:37:09 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/12 17:22:48 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 11:56:38 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,24 @@ char	*expand(char *str)
 	return (str);
 }
 
+bool	var_exist(char *str)
+{
+	t_env	*env;
+
+	env = get_env(NULL);
+	while (env)
+	{
+		while ((!env->name || !env->content) && env->next)
+			env = env->next;
+		if ((!env->name || !env->content))
+			return (false);
+		if (ft_strcmp(env->name, str) == 0)
+			return (true);
+		env = env->next;
+	}
+	return (false);
+}
+
 void	expand_var2(t_token *token, int j, char *var, char *new_str)
 {
 	int	i;
@@ -50,12 +68,16 @@ void	expand_var2(t_token *token, int j, char *var, char *new_str)
 	while (token->token[i++] && ft_isalnum(token->token[i]) == 1)
 		len++;
 	var = ft_substr(token->token, j, len, 0);
-	var = expand(var);
-	new_str = ft_strjoin(new_str, var);
-	var = ft_substr(token->token, i, ft_strlen(&token->token[i]), 0);
-	new_str = ft_strjoin(new_str, var);
-	if (new_str)
-		token->token = new_str;
+	if (var_exist(var) == true)
+	{
+		var = expand(var);
+		new_str = ft_strjoin(new_str, var);
+		var = ft_substr(token->token, i, ft_strlen(&token->token[i]), 0);
+		new_str = ft_strjoin(new_str, var);
+		if (new_str)
+			(token->token = new_str);
+		token->type = 10;
+	}	
 }
 
 int	count_dollar(char *str)
@@ -99,13 +121,4 @@ void	expand_var(t_token **token_list, t_env **env_list)
 		}
 		token = token->next;
 	}
-}
-
-bool	is_operator_bis(t_token *token_node)
-{
-	if (token_node->type == 5 || token_node->type == 6 || token_node->type == 8
-		|| !token_node->token)
-		return (true);
-	else
-		return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:13:20 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/13 19:17:03 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 11:47:08 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,9 @@ void	find_sign(char **command_line, int i, t_data *data)
 		len = ft_strlen(command_line[i]);
 		if (command_line[i][j] != '=' && ft_isalnum(command_line[i][j]) == 0)
 		{
-			ft_putendl_fd("incorrect pattern for export.", 2);
+			ft_putstr_fd("incorrect pattern for export: '", STDERR_FILENO);
+			ft_putstr_fd(command_line[i], STDERR_FILENO);
+			ft_putstr_fd("'\n", STDERR_FILENO);
 			exit_status(2, data);
 			return ;
 		}

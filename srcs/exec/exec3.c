@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:26:31 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/13 15:42:08 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/14 11:43:55 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ bool	check_if_fork_needed(t_ast *ast)
 {
 	if (ft_strcmp(ast->commande->cmd_args[0], "exit") == 0)
 		return (false);
-	if (ast->commande->type == 9 || ast->commande->type == 7)
+	if (ast->commande->type == 10 || ast->commande->type == 7)
 		return (true);
-	if (ast->commande->type >= 9 && ast->commande->type <= 12 
+	if (ast->commande->type >= 10 && ast->commande->type <= 12 
 		&& search_builtins(ast->commande->cmd_args) == false)
 		return (true);
 	return (false);

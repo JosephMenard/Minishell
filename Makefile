@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mianni <mianni@student.42.fr>              +#+  +:+       +#+         #
+#    By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/11 11:43:29 by mianni            #+#    #+#              #
-#    Updated: 2024/11/12 14:18:13 by mianni           ###   ########.fr        #
+#    Updated: 2024/11/14 12:00:42 by jmenard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,12 +29,14 @@ SRC = $(SRC_DIR)/minishell.c \
       $(SRC_DIR)/utils/check_token.c \
 	  $(SRC_DIR)/utils/check_token2.c \
 	  $(SRC_DIR)/utils/check_token3.c \
+	  $(SRC_DIR)/utils/check_token4.c \
       $(SRC_DIR)/utils/utils1.c \
       $(SRC_DIR)/utils/utils2.c \
       $(SRC_DIR)/utils/utils3.c \
 	  $(SRC_DIR)/utils/utils4.c \
 	  $(SRC_DIR)/utils/utils5.c \
 	  $(SRC_DIR)/utils/utils6.c \
+	  $(SRC_DIR)/utils/utils7.c \
       $(SRC_DIR)/parsing/parsing.c \
       $(SRC_DIR)/parsing/parsing_utils.c \
       $(SRC_DIR)/ast/ast_generator.c \

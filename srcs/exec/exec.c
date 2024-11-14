@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 16:41:45 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/13 17:31:38 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 11:43:45 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	exec(t_ast *ast, t_data *data)
 		pipe_function(ast, data);
 	else if (ast->commande->type == 7)
 		subshell_function(ast, data);
-	else if (ast->commande->type >= 9 && ast->commande->type <= 12)
+	else if (ast->commande->type >= 10 && ast->commande->type <= 12)
 		(command_function(ast, data));
 	data = get_data(NULL);
 	return (0);

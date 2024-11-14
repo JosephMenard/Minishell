@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 16:35:11 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/13 19:11:03 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 11:28:59 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,25 @@
 
 // Code operateur : 1 = '<' / 2 = '>' / 3 = '<<' / 4 = '>>'
 
-int	open_files(t_cmd *cmd)
+int	redirect_fd(t_cmd *cmd)
 {
 	int	dup_status;
 
 	dup_status = 0;
+	if (!cmd->cmd_args[0])
+		return (0);
+	if (cmd->files->type == 1 || cmd->files->type == 3)
+		dup_status = dup2(cmd->files->fd, STDIN_FILENO);
+	if (cmd->files->type == 2 || cmd->files->type == 4)
+		dup_status = dup2(cmd->files->fd, STDOUT_FILENO);
+	if (dup_status == -1)
+		return (perror_r("Minishell: dup2 failed: ",
+			cmd->files->files_name));
+	return (0);
+}
+
+int	open_files(t_cmd *cmd)
+{
 	while (cmd->files)
 	{
 		if (cmd->files->type == 1)
@@ -30,14 +44,13 @@ int	open_files(t_cmd *cmd)
 			cmd->files->fd = ft_open(cmd->files->files_name,
 					O_WRONLY | O_APPEND | O_CREAT, -2);
 		if (cmd->files->fd == -1)
-			return (perror_r("Minishell: ", cmd->files->files_name));
-		else if (cmd->files->type == 1 || cmd->files->type == 3)
-			dup_status = dup2(cmd->files->fd, STDIN_FILENO);
-		else if (cmd->files->type == 2 || cmd->files->type == 4)
-			dup_status = dup2(cmd->files->fd, STDOUT_FILENO);
-		if (dup_status == -1)
-			return (perror_r("Minishell: dup2 failed: ",
-					cmd->files->files_name));
+		{
+			perror_r("Minishell: ", cmd->files->files_name);
+			g_status = 1;
+			return (-1);			
+		}
+		else
+			return (redirect_fd(cmd));
 		cmd->files = cmd->files->next;
 	}
 	return (close_fds(), 0);

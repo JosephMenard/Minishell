@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 12:48:45 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/13 19:06:07 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 11:57:54 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ bool	checking_token(t_token **token_list, t_env **env_list)
 			token->token = contain_variables(token->token, *env_list);
 		if (token->type == 7)
 		{
-			if (is_operator_bis(token->prev) == false)
+			if (is_operator_bis(token->prev) == false
+				|| !check_parenthesis(token->token))
 				return (error_token(token->token), false);
 		}
 		if (token->type >= 1 && token->type <= 4)

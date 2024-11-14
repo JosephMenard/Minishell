@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 19:33:58 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/13 17:32:07 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 11:55:07 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,18 +106,4 @@ bool	check_signal(t_data *data, char *str_bis)
 		return (free(str_bis), false);
 	}
 	return (true);
-}
-
-bool	search_in_env(t_env *env, t_data *data)
-{
-	while (env)
-	{
-		if (env->name && env->name[0] == '?' && !env->name[1])
-		{
-			env->content = ft_itoa(data->status);
-			return (true);
-		}
-		env = env->next;
-	}
-	return (false);
 }

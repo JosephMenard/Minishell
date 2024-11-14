@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:05:23 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/13 15:46:55 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 11:48:12 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ bool							check_quotes(char *command_line,
 // UTILS
 
 // utils1.c
-bool							check_parenthesis(char *command_line);
 int								skip_spaces(char *command_line, int i);
 bool							is_a_separator(char c);
 bool							is_a_word(char *command_line, int i);
@@ -256,5 +255,6 @@ char							**copy_remaining_cmd(char **cmd, char **new_cmd,
 									int *i, int *c);
 void							error_heredoc(char *token);
 void							set_child_signals(void);
+bool    						check_parenthesis(char *str);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:16:57 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/11 16:27:37 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/14 11:38:12 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,46 +85,46 @@ t_cmd	*concat_cmd_bis(t_cmd *cmd, t_token *token, t_files *files, int i)
 	return (cmd);
 }
 
-/*void	print_cmd_list(t_cmd **cmd, int a)
-{
-	t_cmd	*cmd_list;
-	t_files	*file_temp;
-	int		i;
-	int		j;
-	int		f;
+// void	print_cmd_list(t_cmd **cmd, int a)
+// {
+// 	t_cmd	*cmd_list;
+// 	t_files	*file_temp;
+// 	int		i;
+// 	int		j;
+// 	int		f;
 
-	i = 0;
-	j = 1;
-	cmd_list = *cmd;
-	printf("PRINT LIST \n");
-	printf("////////////////////////////\n");
-	while (cmd_list)
-	{
-		i = 0;
-		printf("CMD NUM %d\n", j);
-		while (cmd_list->cmd_args[i])
-		{
-			printf("cmd %d ; %s\n", i, cmd_list->cmd_args[i]);
-			i++;
-		}
-		printf("type ; %d\n", cmd_list->type);
-		f = 1;
-		file_temp = cmd_list->files;
-		while (cmd_list->files)
-		{
-			printf("\tFILES %d\n", f);
-			printf("\tfile name ; %s\n", cmd_list->files->files_name);
-			printf("\tfd ; %d\n", cmd_list->files->fd);
-			printf("\ttype ; %d\n", cmd_list->files->type);
-			cmd_list->files = cmd_list->files->next;
-			f++;
-		}
-		cmd_list->files = file_temp;
-		cmd_list = cmd_list->next;
-		j++;
-		printf("\n-------------------\n");
-		if (a == 1)
-			break ;
-	}
-	printf("////////////////////////////\n");
-}*/
+// 	i = 0;
+// 	j = 1;
+// 	cmd_list = *cmd;
+// 	printf("PRINT LIST \n");
+// 	printf("////////////////////////////\n");
+// 	while (cmd_list)
+// 	{
+// 		i = 0;
+// 		printf("CMD NUM %d\n", j);
+// 		while (cmd_list->cmd_args[i])
+// 		{
+// 			printf("cmd %d ; %s\n", i, cmd_list->cmd_args[i]);
+// 			i++;
+// 		}
+// 		printf("type ; %d\n", cmd_list->type);
+// 		f = 1;
+// 		file_temp = cmd_list->files;
+// 		while (cmd_list->files)
+// 		{
+// 			printf("\tFILES %d\n", f);
+// 			printf("\tfile name ; %s\n", cmd_list->files->files_name);
+// 			printf("\tfd ; %d\n", cmd_list->files->fd);
+// 			printf("\ttype ; %d\n", cmd_list->files->type);
+// 			cmd_list->files = cmd_list->files->next;
+// 			f++;
+// 		}
+// 		cmd_list->files = file_temp;
+// 		cmd_list = cmd_list->next;
+// 		j++;
+// 		printf("\n-------------------\n");
+// 		if (a == 1)
+// 			break ;
+// 	}
+// 	printf("////////////////////////////\n");
+// }
