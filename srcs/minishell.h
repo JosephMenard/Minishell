@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:05:23 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/14 11:48:12 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 16:03:14 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,7 +246,7 @@ void							initialize_data(t_data *data, t_env **env_list,
 									char **envp);
 bool							option_n(char *str);
 bool							open_n_do_builtins(t_cmd *cmd, t_data *data,
-									t_files *files);
+									t_files *files, int dup_status);
 void							print_data(t_data *data);
 bool							check_signal(t_data *data, char *str_bis);
 bool							is_operator_bis(t_token *token_node);

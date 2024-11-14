@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 19:33:58 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/14 15:22:56 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 16:02:50 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,9 @@ bool	check_exit(t_cmd *cmd, t_data *data)
 		return (false);
 }
 
-bool	open_n_do_builtins(t_cmd *cmd, t_data *data, t_files *files)
+bool	open_n_do_builtins(t_cmd *cmd, t_data *data, t_files *files, int dup_status)
 {
 	bool	status;
-	int		dup_status;
 	int		stdin;
 	int		stdout;
 
@@ -60,9 +59,8 @@ bool	open_n_do_builtins(t_cmd *cmd, t_data *data, t_files *files)
 		return (do_builtins(cmd->cmd_args, data));
 	stdin = dup(STDIN_FILENO);
 	stdout = dup(STDOUT_FILENO);
-	dup_status = 0;
 	if (open_files(cmd) == -1)
-		return (data->status = 1, true);
+		return (close(stdin), close(stdout), data->status = 1, true);
 	else
 	{
 		status = do_builtins(cmd->cmd_args, data);
@@ -71,7 +69,8 @@ bool	open_n_do_builtins(t_cmd *cmd, t_data *data, t_files *files)
 		else if (files->type == 2 || files->type == 4)
 			dup_status = dup2(stdout, STDOUT_FILENO);
 		if (dup_status == -1)
-			return (perror_r("Minishell: dup2: ", files->files_name), false);
+			return (close(stdin), close(stdout), 
+				perror_r("Minishell: dup2: ", files->files_name), false);
 		return (close(stdin), close(stdout), status);
 	}
 }

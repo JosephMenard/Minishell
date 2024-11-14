@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 16:41:45 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/14 15:07:23 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 16:09:43 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	execute_command(char *path, t_cmd *cmd, char **env_array)
 {
 	if (execve(path, cmd->cmd_args, env_array) == -1)
 	{
-		ft_putstr_fd("Minishell65465: ", STDERR_FILENO);
+		ft_putstr_fd("Minishell: ", STDERR_FILENO);
 		perror(cmd->cmd_args[0]);
 		if (errno == ENOENT)
             exit_now(127);
@@ -37,7 +37,7 @@ int	prepare_and_execute(t_ast *ast, t_data *data, char **env_array)
 	char	*path;
 
 	ast->commande->cmd_args = find_wildcards(ast->commande);
-	if (open_n_do_builtins(ast->commande, data, ast->commande->files))
+	if (open_n_do_builtins(ast->commande, data, ast->commande->files, 0))
 		return (1);
 	path = get_path(ast->commande->cmd_args[0], env_array);
 	if (!path)
