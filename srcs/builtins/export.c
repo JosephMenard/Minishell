@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:13:20 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/14 15:39:05 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 16:43:39 by mianni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ bool	search_var(char *str_name, char *str_content, t_env *env)
 {
 	while (env)
 	{
+		while ((!env->name || !env->content) && env->next)
+			env = env->next;
+		if (!env->name || !env->content)
+			break ;
 		if (ft_strcmp(env->name, str_name) == 0)
 			return (env->content = str_content, true);
 		env = env->next;
@@ -118,7 +122,8 @@ void	ft_export(char **command_line, t_data *data)
 	while (command_line[i])
 	{
 		find_sign(command_line, i, data);
+		if (data->status == 2)
+			break ;
 		i++;
 	}
-	data->status = 0;
 }
