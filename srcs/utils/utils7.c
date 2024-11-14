@@ -6,7 +6,7 @@
 /*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:53:53 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/14 18:22:24 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/14 19:02:31 by mianni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,11 @@ bool	check_files_cmd_exist_right(t_ast *ast_list)
 	if (count > 0)
 		return (false);
 	return (true);
+}
+
+void	error_export(char *command_line)
+{
+	ft_putstr_fd("incorrect pattern for export: '", STDERR_FILENO);
+	ft_putstr_fd(command_line, STDERR_FILENO);
+	ft_putstr_fd("'\n", STDERR_FILENO);
 }

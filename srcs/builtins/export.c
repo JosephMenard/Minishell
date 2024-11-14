@@ -6,7 +6,7 @@
 /*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:13:20 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/14 16:43:39 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/14 19:02:46 by mianni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,19 @@ int	find_sign2(char **command_line, char *str_content, int *i, int *j)
 	char	*str_name;
 	int		len;
 	t_env	*env;
-	t_data	*data;
 
 	str_name = NULL;
-	data = get_data(NULL);
 	env = get_env(NULL);
-	len = ft_strlen(command_line[*i]);
+	len = ft_strlen(&command_line[*i][*j]);
 	str_name = ft_substr(command_line[*i], 0, *j, 1);
 	if (command_line[*i][*j + 1] == '$')
 		str_content = try_to_expand(command_line[*i], *j + 1);
+	if (command_line[*i][*j + 1] == '"' || command_line[*i][*j + 1] == '\'')
+	{
+		str_content = ft_substr(command_line[*i], *j + 2, len - 3, 1);
+		if (search_var(str_name, str_content, env) == true)
+			return (0);
+	}
 	else
 	{
 		str_content = ft_substr(command_line[*i], *j + 1, len, 1);
@@ -76,9 +80,8 @@ int	find_sign2(char **command_line, char *str_content, int *i, int *j)
 			return (0);
 	}
 	if (!str_name)
-		data->status = 1;
-	new_node(env, str_name, str_content);
-	return (1);
+		get_data(NULL)->status = 1;
+	return (new_node(env, str_name, str_content), 1);
 }
 
 void	find_sign(char **command_line, int i, t_data *data)
@@ -92,14 +95,10 @@ void	find_sign(char **command_line, int i, t_data *data)
 	while (command_line[i][j])
 	{
 		len = ft_strlen(command_line[i]);
-		if (command_line[i][j] != '=' && ft_isalnum(command_line[i][j]) == 0)
-		{
-			ft_putstr_fd("incorrect pattern for export: '", STDERR_FILENO);
-			ft_putstr_fd(command_line[i], STDERR_FILENO);
-			ft_putstr_fd("'\n", STDERR_FILENO);
-			data->status = 2;
-			return ;
-		}
+		if (((command_line[i][j] != '=' && ft_isalnum(command_line[i][j]) == 0))
+				|| ft_isdigit(command_line[i][0])
+					|| !export_invalid_char(command_line[i][j]))
+			return ((void)(data->status = 2), (error_export(command_line[i])));
 		if (command_line[i][j] == '=')
 		{
 			if (find_sign2(command_line, NULL, &i, &j) == 0)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+         #
+#    By: mianni <mianni@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/11 11:43:29 by mianni            #+#    #+#              #
-#    Updated: 2024/11/14 12:00:42 by jmenard          ###   ########.fr        #
+#    Updated: 2024/11/14 19:00:21 by mianni           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC = $(SRC_DIR)/minishell.c \
 	  $(SRC_DIR)/utils/utils5.c \
 	  $(SRC_DIR)/utils/utils6.c \
 	  $(SRC_DIR)/utils/utils7.c \
+	  $(SRC_DIR)/utils/utils8.c \
       $(SRC_DIR)/parsing/parsing.c \
       $(SRC_DIR)/parsing/parsing_utils.c \
       $(SRC_DIR)/ast/ast_generator.c \

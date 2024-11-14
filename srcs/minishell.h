@@ -6,7 +6,7 @@
 /*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:05:23 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/14 18:23:00 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/14 19:03:07 by mianni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,5 +258,7 @@ void							set_child_signals(void);
 bool							check_parenthesis(char *str);
 bool							check_files_cmd_exist_left(t_ast *ast_list);
 bool							check_files_cmd_exist_right(t_ast *ast_list);
+bool							export_invalid_char(char c);
+void							error_export(char *command_line);
 
 #endif
