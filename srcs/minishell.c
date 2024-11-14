@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:09:56 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/14 11:23:56 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 14:00:51 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,45 @@ char	*handle_input(void)
 	}
 }
 
-bool	check_files_cmd_exist(t_ast *ast_list)
+bool	check_files_cmd_exist_left(t_ast *ast_list)
 {
 	int	count;
 
 	count = 0;
 	if (!ast_list->commande->cmd_args[0])
 	{
+		printf("pas de cmd left\n");
 		if (ast_list->commande->files)
 			open_files(ast_list->commande);
 		count++;
 	}
 	if (ast_list->left)
-		return (check_files_cmd_exist(ast_list->left));
+	{
+		printf("left\n");
+		return (check_files_cmd_exist_left(ast_list->left));
+	}
+	if (count > 0)
+		return (false);
+	return (true);
+}
+
+bool	check_files_cmd_exist_right(t_ast *ast_list)
+{
+	int	count;
+
+	count = 0;
+	if (!ast_list->commande->cmd_args[0])
+	{
+		printf("pas de cmd right %s\n", ast_list->commande->files->files_name);
+		if (ast_list->commande->files)
+			open_files(ast_list->commande);
+		count++;
+	}
 	if (ast_list->right)
-		return (check_files_cmd_exist(ast_list->right));
+	{
+		printf("right\n");
+		return (check_files_cmd_exist_right(ast_list->right));
+	}
 	if (count > 0)
 		return (false);
 	return (true);
@@ -96,8 +120,9 @@ void	process_command(char *str, t_env *env_list, t_data *data,
 	*ast_list = parsing(str, env_list);
 	if (!(*ast_list))
 		return ;
-	if (check_files_cmd_exist(*ast_list) == false)
-		return ;
+	check_files_cmd_exist_left(*ast_list);
+	if ((*ast_list)->right)
+	check_files_cmd_exist_right(*ast_list);
 	if (data->signaled == 1)
 	{
 		signal_catch(data);

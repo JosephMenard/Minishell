@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:13:09 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/13 16:16:51 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 13:10:54 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_cd(char **path, int i, t_data *data)
 	{
 		exit_status(1, data);
 		perror("cd");
-		return (data->status = 1, 1);
+		return (g_status = 1, 1);
 	}
 	exit_status(0, data);
 	return (0);

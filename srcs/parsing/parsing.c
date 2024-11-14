@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:37:21 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/10 18:33:51 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/14 14:11:25 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ t_cmd	*concat_cmd(t_cmd *cmd, t_token *token)
 	cmd = ft_malloc(1, sizeof(t_cmd), 0, 0);
 	cmd->next = NULL;
 	cmd->cmd_args = ft_malloc(t_len + 1, sizeof(char *), 0, 0);
+	cmd->type = 10;
 	return (concat_cmd_bis(cmd, token, files, 0));
 }
 

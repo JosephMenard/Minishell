@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:26:31 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/14 11:43:55 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 14:06:06 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ void	fork_and_exec(t_ast *ast, t_data *data)
 
 bool	check_if_fork_needed(t_ast *ast)
 {
+	if (!ast->commande->cmd_args[0])
+		return (false);
 	if (ft_strcmp(ast->commande->cmd_args[0], "exit") == 0)
 		return (false);
-	if (ast->commande->type == 10 || ast->commande->type == 7)
-		return (true);
-	if (ast->commande->type >= 10 && ast->commande->type <= 12 
-		&& search_builtins(ast->commande->cmd_args) == false)
+	if (ast->commande->type == 7 || (ast->commande->type >= 10 && ast->commande->type <= 12 
+		&& search_builtins(ast->commande->cmd_args) == false))
 		return (true);
 	return (false);
 }

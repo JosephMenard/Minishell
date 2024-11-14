@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 16:35:11 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/14 11:28:59 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/14 13:21:28 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ int	redirect_fd(t_cmd *cmd)
 
 int	open_files(t_cmd *cmd)
 {
+	int	ret;
+
+	ret = 0;
 	while (cmd->files)
 	{
 		if (cmd->files->type == 1)
@@ -44,16 +47,13 @@ int	open_files(t_cmd *cmd)
 			cmd->files->fd = ft_open(cmd->files->files_name,
 					O_WRONLY | O_APPEND | O_CREAT, -2);
 		if (cmd->files->fd == -1)
-		{
-			perror_r("Minishell: ", cmd->files->files_name);
-			g_status = 1;
-			return (-1);			
-		}
+			return (close_fds(), get_data(NULL)->status = 1, 
+				perror_r("Minishell: ", cmd->files->files_name));
 		else
-			return (redirect_fd(cmd));
+			ret = redirect_fd(cmd);
 		cmd->files = cmd->files->next;
 	}
-	return (close_fds(), 0);
+	return (close_fds(), ret);
 }
 
 void	open_all_heredoc(t_cmd **cmd_list)
