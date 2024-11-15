@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_token4.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:55:37 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/14 12:01:31 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/15 12:12:36 by mianni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,21 @@ bool	check_token_redir(t_token *token)
 	return (true);
 }
 
+bool	check_token_operator(t_token *token)
+{
+	if (token->type == 5)
+	{
+		if (ft_strcmp(token->token, "&&") != 0)
+			return (error_token(token->token), false);
+	}
+	if (token->type == 6)
+	{
+		if (ft_strcmp(token->token, "||") != 0)
+			return (error_token(token->token), false);
+	}
+	return (true);
+}
+
 bool	checking_token_bis(t_token **token_list)
 {
 	t_token	*token;
@@ -55,6 +70,8 @@ bool	checking_token_bis(t_token **token_list)
 	{
 		if (is_operator_bis(token))
 		{
+			if (check_token_operator(token) == false)
+				return (false);
 			if (!token->next)
 				return (error_token(token->token), false);
 			if (is_operator_bis(token->prev) || is_operator_bis(token->next))

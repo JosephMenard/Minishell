@@ -6,7 +6,7 @@
 /*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:57:05 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/11 15:24:48 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/15 12:03:57 by mianni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,9 @@ static int	assign_type(t_token *token_list)
 		return (3);
 	if (token_list->token[0] == '>' && token_list->token[1] == '>')
 		return (4);
-	if (token_list->token[0] == '&' && token_list->token[1] == '&'
-		&& !token_list->token[2])
+	if (token_list->token[0] == '&' && token_list->token[1] == '&')
 		return (5);
-	if (token_list->token[0] == '|' && token_list->token[1] == '|'
-		&& !token_list->token[2])
+	if (token_list->token[0] == '|' && token_list->token[1] == '|')
 		return (6);
 	if (token_list->token[0] == '(' && token_list->token[1] != ')')
 		return (7);

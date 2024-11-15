@@ -6,7 +6,7 @@
 /*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 19:38:28 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/11 19:56:52 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/15 12:21:50 by mianni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,6 @@ bool	variable_test(char *str)
 	}
 	return (true);
 }
-
-// bool		check_token_list(t_token *token_list)
-//{
-//	while (token_list)
-//	{
-//		if (token_list->type == -1)
-//			return (print_error(1, token_list->token, data), false);
-//		token_list = token_list->next;
-//	}
-//	return (true);
-//}
 
 bool	is_a_quote(char c)
 {

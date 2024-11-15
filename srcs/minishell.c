@@ -6,7 +6,7 @@
 /*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:09:56 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/14 19:06:41 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/15 12:20:36 by mianni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,3 @@ int	main(int argc, char **argv, char **envp)
 	}
 	return (printf("exit\n"), exit_now(data.status), 0);
 }
-
-//
