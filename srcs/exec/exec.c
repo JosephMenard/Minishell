@@ -6,7 +6,7 @@
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 16:41:45 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/14 16:09:43 by jmenard          ###   ########.fr       */
+/*   Updated: 2024/11/15 14:29:57 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ int	prepare_and_execute(t_ast *ast, t_data *data, char **env_array)
 	ast->commande->cmd_args = find_wildcards(ast->commande);
 	if (open_n_do_builtins(ast->commande, data, ast->commande->files, 0))
 		return (1);
-	path = get_path(ast->commande->cmd_args[0], env_array);
+	if (ast->commande->type == 11 || ast->commande->type == 12)
+		path = get_path_bis(ast->commande->cmd_args[0], env_array);
+	else
+		path = get_path(ast->commande->cmd_args[0], env_array);
 	if (!path)
 		return (print_command_not_found(ast->commande->cmd_args[0]));
 	if (open_files(ast->commande) == 0)

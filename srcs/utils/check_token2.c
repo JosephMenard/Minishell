@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_token2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 19:35:53 by mianni            #+#    #+#             */
-/*   Updated: 2024/11/10 19:41:37 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/15 14:20:57 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,10 @@ char	*concat_str(t_token *token_list)
 
 	if (token_list->token)
 		str = ft_strdup(token_list->token);
-	token_list = token_list->next;
-	if (!token_list->token)
-		return (str);
+	if (token_list->next)
+		token_list = token_list->next;
+	else if (!token_list->next || !token_list->token)
+		return (ft_strjoin("$", str));
 	while (token_list)
 	{
 		tmp = ft_strjoin(str, token_list->token);

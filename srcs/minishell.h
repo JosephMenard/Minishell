@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mianni <mianni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:05:23 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/14 19:03:07 by mianni           ###   ########.fr       */
+/*   Updated: 2024/11/15 13:59:05 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,7 @@ t_data							*get_data(t_data *data);
 bool							is_a_subshell(t_ast *ast);
 int								exec(t_ast *ast, t_data *data);
 char							*get_path(char *cmd, char **env);
+char							*get_path_bis(char *cmd, char **env);
 bool							is_a_special_space(char c);
 void							signal_handler(int signum);
 void							exit_status(int status, t_data *data);
