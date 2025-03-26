@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   design.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 14:13:05 by jmenard           #+#    #+#             */
-/*   Updated: 2024/11/13 18:12:19 by jmenard          ###   ########.fr       */
+/*   Updated: 2025/03/26 12:09:47 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,18 +95,5 @@ char	*print_prompt(void)
 	i = 0;
 	new_pwd = find_cwd();
 	env = getenv("SESSION_MANAGER");
-	if (!env)
-		return (readline("\033[1mminishell-> \033[0m"));
-	else
-	{
-		name = ft_strnstr(env, "made", ft_strlen(env));
-		while (name[i] != '.')
-			i++;
-		name_bis = ft_substr(name, 0, i, 0);
-		name_bis = ft_strjoin("\001\033[1;37m\002", name_bis);
-		name_bis = ft_strjoin(name_bis, "\001\033[0m\002");
-		name_bis = ft_strjoin(name_bis, new_pwd);
-		name_bis = ft_strjoin(name_bis, "\001\033[1;37m\002->\001\033[0m\002 ");
-		return (readline(name_bis));
-	}
+	return (readline("\033[1mminishell-> \033[0m"));
 }
